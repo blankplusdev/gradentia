@@ -1,3 +1,5 @@
+package coursetool;
+
 import java.security.InvalidParameterException;
 
 public class CourseLink extends CourseDependency

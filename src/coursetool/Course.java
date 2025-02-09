@@ -1,3 +1,5 @@
+package coursetool;
+
 import java.util.ArrayList;
 
 public class Course

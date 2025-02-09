@@ -1,3 +1,5 @@
+package coursetool;
+
 enum CourseDependencyType
 {
     UNDEFINED,
