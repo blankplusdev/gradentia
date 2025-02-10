@@ -4,19 +4,19 @@ import java.security.InvalidParameterException;
 
 public class CourseDependency
 {
-    protected Course linkOrigin;
+    protected Course dependencyOrigin;
     protected CourseDependencyType dependencyType = CourseDependencyType.UNDEFINED;
 
     public CourseDependency(Course origin) throws InvalidParameterException
     {
         if(origin == null) {throw new InvalidParameterException("Origin course cannot be a null reference.");}
-
-        this.linkOrigin = origin;
+        
+        this.dependencyOrigin = origin;
     }
 
     public Course getOrigin()
     {
-        return this.linkOrigin;
+        return this.dependencyOrigin;
     }
 
     public CourseDependencyType getDependencyType()

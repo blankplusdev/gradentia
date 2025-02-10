@@ -1,5 +1,6 @@
 package coursetool;
 
+//Definitions for the different kinds of dependencies courses can have - key to their relationships.
 enum CourseDependencyType
 {
     UNDEFINED,
@@ -8,6 +9,7 @@ enum CourseDependencyType
     CONCURRENT
 }
 
+//More verbose definition for a course's semester availability.
 enum Semester
 {
     UNDEFINED,
@@ -16,6 +18,7 @@ enum Semester
     SUMMER
 }
 
+//More verbose definition for a course's year availability.
 enum Year
 {
     ALL,
@@ -23,7 +26,7 @@ enum Year
     ODD
 }
 
-
+//Course department categorization values.
 enum Department
 {
     UNDEFINED,
