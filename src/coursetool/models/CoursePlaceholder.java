@@ -1,4 +1,4 @@
-package coursetool;
+package coursetool.models;
 
 public class CoursePlaceholder extends CourseTemplate
 {

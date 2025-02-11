@@ -1,4 +1,4 @@
-package coursetool;
+package coursetool.models;
 
 //Definitions for the different kinds of dependencies courses can have - key to their relationships.
 enum CourseDependencyType
