@@ -3,19 +3,28 @@ package coursetool.models;
 public class CoursePlaceholder extends CourseTemplate
 {
     private boolean resolved = false;
+    private Course replacement = null;
 
-    public CoursePlaceholder()
+    public CoursePlaceholder(Integer ID)
     {
-        super();
+        super(ID);
     }
 
-    public void replace(Course replacementCourse)
+    public void markResolved(Course replacement)
     {
-        //Modify all references to this object with the new Course object.
+        this.resolved = true;
+        this.replacement = replacement;
     }
 
-    public void close()
+    public Course getReplacement() //Returns Replaced Course Reference; testing tool.
     {
-        //Remove all references to this object.
+        return replacement;
+    }
+
+    public String toString()
+    {
+        String returnString = super.toString()+" | ";
+        if(resolved) {returnString+= "#Resolved "+replacement;}     else {returnString+= "#Unresolved";}
+        return returnString;
     }
 }

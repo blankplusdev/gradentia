@@ -10,9 +10,17 @@ public class Course extends CourseTemplate
     
     private ArrayList<CourseLink> courseLinks; //An arraylist containing all complete and incomplete courseLinks to other courses.
 
-    public Course()
+    public Course(Integer ID)
     {
-        super(); //Currently unutilized. Favoring mutator methods for data assignment, allowing incomplete course info for user accesibility.
+        super(ID);
+    }
+
+    public Course(CoursePlaceholder source)
+    {
+        super(source.getID());
+        this.courseCode = source.getCode();
+        this.courseName = source.getName();
+        source.markResolved(this);
     }
 
     public void setDepartment(Department courseDepartment)
@@ -54,5 +62,22 @@ public class Course extends CourseTemplate
     public ArrayList<CourseLink> getcourseLinks()
     {
         return courseLinks;
+    }
+
+    public String toString()
+    {
+        String returnString = super.toString();
+
+        if(this.courseDepartment != Department.UNDEFINED) ///Appends Course Department to returnString
+        {
+            returnString += (" | "+this.courseDepartment.toString());
+        }
+
+        if(this.courseCreditHours != 0) //Appends Course Credit to returnString
+        {
+            returnString += (" | "+this.courseCreditHours);
+        }
+
+        return returnString;
     }
 }
