@@ -1,4 +1,4 @@
-# CourseTool
+# Gradentia
 Hello!
 
 Gradentia is my attempt at designing a college curriculum planner. Currently, this will be based and tested around The Ohio State University's course offerings, but should eventually achieve generic functionality.
