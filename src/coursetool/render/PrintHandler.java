@@ -2,8 +2,9 @@ package coursetool.render;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import coursetool.models.*;
 
-public class PrintHandler
+public class PrintHandler //For use with CMD interface
 {
     int frameWidth;
     int frameHeight;
@@ -21,12 +22,19 @@ public class PrintHandler
 
     public static void main(String[] args) throws IOException
     {
-        
+        Course calc = generateExampleCourse();
+
         clearConsole();
         PrintHandler draw = new PrintHandler(258,58);
         draw.drawFrame();
         draw.drawLogo(1, 5,true);
+        draw.drawAboutInfo();
         draw.drawHLine(6, 0, draw.frameWidth);
+        draw.drawVLine((draw.frameWidth-65), 6, draw.frameHeight);
+        draw.drawCourseCard(calc, 8, 2);
+        draw.drawHLine(draw.frameHeight-7, 0, draw.frameWidth);
+        
+        
         draw.pushBuffer();
     }
 
@@ -145,9 +153,11 @@ public class PrintHandler
         }
         return eLine;
     }
-
+    
     public void drawHLine(int line, int startPos, int endPos)
     {
+        //This is currently unsafe, I'd recomend adding complete* bound checks
+        startPos = Math.max(startPos,0);
         endPos = Math.min(endPos,this.frameWidth);
         int length = (endPos-startPos);
         
@@ -171,7 +181,6 @@ public class PrintHandler
                 if(isStart) {replaceStr = "┌";}
                 else if(isEnd) {replaceStr = "┐";}
                 else {replaceStr = "┬";}
-                
                 break;
                 case "┌":
                 if(!isStart) replaceStr = "┬"; 
@@ -204,12 +213,73 @@ public class PrintHandler
             }
         }
 
-        ArrayList<String> newLineElement = new ArrayList<>(1);
-        newLineElement.add(newLine);
-        updateBufferWithElement(newLineElement, line, startPos);
+        ArrayList<String> newHLineElement = new ArrayList<>(1);
+        newHLineElement.add(newLine);
+        updateBufferWithElement(newHLineElement, line, startPos);
     }
     
-    public void drawVLine(int pos, int startLine, int endLine){}
+    public void drawVLine(int pos, int startLine, int endLine)
+    {
+        int lineCount = (endLine-startLine);
+        ArrayList<String> newVLineElement = new ArrayList<String>(lineCount);
+        for(int i = startLine; i < endLine; i++)
+        {
+            String nextSegment = "│";
+            
+            String checkStr = this.printBuffer.get(i).substring(pos,pos+1);
+            String replaceStr = null;
+            boolean isStart = (i == startLine);
+            boolean isEnd = (i == (endLine-1));
+            
+            switch(checkStr) //┌ ┐ └ ┘ ─ │ ├ ┤ ┬ ┴ ┼
+            {
+                case "─":
+                if(isStart) {replaceStr = "┬";}
+                else if(isEnd) {replaceStr = "┴";}
+                else {replaceStr = "┼";}
+                break;
+                
+                case "▌":
+                if(isStart) {replaceStr = "┐";}
+                else if(isEnd) {replaceStr = "┘";}
+                else {replaceStr = "┤";}
+                break;
+                case "┌":
+                if(!isStart) replaceStr = "├"; 
+                break;
+                case "┐":
+                if(!isStart) replaceStr = "┤"; 
+                break;
+
+                case "▐":
+                if(isStart) {replaceStr = "┌";}
+                else if(isEnd) {replaceStr = "└";}
+                else {replaceStr = "├";} 
+                break;
+                case "└":
+                if(!isEnd) replaceStr = "├"; 
+                break;
+                case "┘":
+                if(!isEnd) replaceStr = "┤"; 
+                break;
+
+                case " ":
+                if(isStart) replaceStr = "▄";
+                else if(isEnd) replaceStr = "▀";
+                break;
+            }
+
+            if(replaceStr != null)
+            {
+                nextSegment = replaceStr;
+            }
+
+            newVLineElement.add(nextSegment);
+        }
+
+        updateBufferWithElement(newVLineElement, startLine, pos);
+        
+    }
 
     public void drawLogo(int line, int pos, boolean showName)
     {
@@ -241,9 +311,40 @@ public class PrintHandler
 
     public void drawAboutInfo()
     {
-        
+        String aboutVersion = "Development Build" + ": " + "0.0.1"; //TODO: replace with fetch call from config/release file once it's implemented
+        String aboutVersionDate = "Build Date: " + "June 13th, 2025"; //TODO: replace with fetch call from config/release file once it's implemented
+        String aboutInstitution = "Institution: " + "N/A"; //TODO: replace with fetch call from Institution file once it's implemented
+
+        drawText(aboutVersion,1,(this.frameWidth-2-aboutVersion.length()));
+        drawText(aboutVersionDate,2,(this.frameWidth-2-aboutVersionDate.length()));
+        drawText(aboutInstitution,5,(this.frameWidth-2-aboutInstitution.length()));
     }
 
+    public void drawCourseCard(Course target, int line, int pos)
+    {
+
+        String code = target.getCode();
+        String name = target.getName();
+        String credit = "Cr Hrs: " + target.getCreditHours();
+
+        int cardWidth = 6 + (Math.max((code.length() + credit.length() + 4),(name.length())));
+
+        drawBox(line, pos, cardWidth, 7);
+        drawText(code + "    " + credit, ++line, pos + 3);
+        drawText(name, ++line,(pos + 3 + (cardWidth-6-name.length())/2));
+    }
+
+    public static Course generateExampleCourse()
+    {
+        Course example = new Course(1);
+        example.setName("Calculus I");
+        example.setCourseCode("MATH1152");
+        example.setCreditHours(5);
+
+        return example;
+        
+    }
+    
     public static void clearConsole()
     {
         try {
