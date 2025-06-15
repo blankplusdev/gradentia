@@ -1,15 +1,17 @@
 package coursetool.render;
 
+import java.util.Scanner;
 import java.io.IOException;
 import java.util.ArrayList;
 import coursetool.models.*;
 
 public class PrintHandler //For use with CMD interface
 {
-    int frameWidth;
-    int frameHeight;
-    String standardSpacer;
-    String standardHorizontalLine;
+    private final static String[] logo = {"   ______               __           __  _","  / ____/________ _____/ /__  ____  / /_(_)___ _"," / / __/ ___/ __ `/ __  / _ \\/ __ \\/ __/ / __ `/","/ /_/ / /  / /_/ / /_/ /  __/ / / / /_/ / /_/ /","\\____/_/   \\__,_/\\__,_/\\___/_/ /_/\\__/_/\\__,_/","────────────────────────────────────────────────"};
+    private int frameWidth;
+    private int frameHeight;
+    private String standardSpacer;
+    private String standardHorizontalLine;
 
     ArrayList<String> printBuffer;
 
@@ -23,14 +25,14 @@ public class PrintHandler //For use with CMD interface
     public static void main(String[] args) throws IOException
     {
         Course calc = generateExampleCourse();
-
+        Scanner userIn = new Scanner(System.in);
         clearConsole();
-        PrintHandler draw = new PrintHandler(258,58);
+        PrintHandler draw = initDrawField(userIn);
         draw.drawFrame();
         draw.drawLogo(1, 5,true);
         draw.drawAboutInfo();
         draw.drawHLine(6, 0, draw.frameWidth);
-        draw.drawVLine((draw.frameWidth-65), 6, draw.frameHeight);
+        draw.drawVLine((draw.frameWidth-(draw.frameWidth/5)), 6, draw.frameHeight);
         draw.drawCourseCard(calc, 8, 2);
         draw.drawHLine(draw.frameHeight-7, 0, draw.frameWidth);
         
@@ -65,9 +67,14 @@ public class PrintHandler //For use with CMD interface
         }
     }
     
-    public void flushBuffer()
+    public void flushBuffer(ArrayList<String> saveAL)
     {
         pushBuffer();
+        
+        if(saveAL != null)
+        {
+            saveAL = new ArrayList<String>(this.printBuffer);
+        }
         this.printBuffer = new ArrayList<String>();
     }
 
@@ -283,9 +290,8 @@ public class PrintHandler //For use with CMD interface
 
     public void drawLogo(int line, int pos, boolean showName)
     {
-        String[] logo = {"   ______               __           __  _","  / ____/________ _____/ /__  ____  / /_(_)___ _"," / / __/ ___/ __ `/ __  / _ \\/ __ \\/ __/ / __ `/","/ /_/ / /  / /_/ / /_/ /  __/ / / / /_/ / /_/ /","\\____/_/   \\__,_/\\__,_/\\___/_/ /_/\\__/_/\\__,_/"};
         ArrayList<String> logoElement = new ArrayList<String>(5);
-        for(int i = 0; i < logo.length; i++)
+        for(int i = 0; i < logo.length-1; i++) //-1 Omits the additional vertical line
         {
             String newLine = logo[i];
             if(i == 4 && showName) {newLine += "     by Niko B.";}
@@ -311,8 +317,8 @@ public class PrintHandler //For use with CMD interface
 
     public void drawAboutInfo()
     {
-        String aboutVersion = "Development Build" + ": " + "0.0.1"; //TODO: replace with fetch call from config/release file once it's implemented
-        String aboutVersionDate = "Build Date: " + "June 13th, 2025"; //TODO: replace with fetch call from config/release file once it's implemented
+        String aboutVersion = "UI Draw Test" + ": " + "4"; //TODO: replace with fetch call from config/release file once it's implemented
+        String aboutVersionDate = "Build Date: " + "June 14th, 2025"; //TODO: replace with fetch call from config/release file once it's implemented
         String aboutInstitution = "Institution: " + "N/A"; //TODO: replace with fetch call from Institution file once it's implemented
 
         drawText(aboutVersion,1,(this.frameWidth-2-aboutVersion.length()));
@@ -338,7 +344,7 @@ public class PrintHandler //For use with CMD interface
     {
         Course example = new Course(1);
         example.setName("Calculus I");
-        example.setCourseCode("MATH1152");
+        example.setCourseCode("MATH1151");
         example.setCreditHours(5);
 
         return example;
@@ -357,4 +363,70 @@ public class PrintHandler //For use with CMD interface
             System.out.println("Error clearing console: " + e.getMessage());
         }
     }
+
+    public static PrintHandler initDrawField(Scanner inputScanner)
+    {
+        for(String line : logo)
+        {
+            System.out.println(line);
+        }
+        System.out.println("\n Press enter to continue...");
+        pause();
+        
+        
+        System.out.println("The CMD based UI relies upon no text wrapping to remain legible.\n\nWe ask that you resize the window as you desire now, and then enter\nthe width (in characters) that does not take more than one line.\n(Default is 200)\n");
+        int desiredWidth = 200;
+        boolean satisfactoryWidth = false;
+
+        while(!satisfactoryWidth)
+        {
+            printWidth(desiredWidth);
+            System.out.println("\n\n Is this width satisfactory? y/n\n");
+            String userResponse = inputScanner.next().toLowerCase();
+            if(userResponse.equals("y")||userResponse.equals("yes"))
+            {
+                satisfactoryWidth = true;
+                continue;
+            }
+            else
+            {
+                System.out.println("\nPlease enter new desired width:\n");
+                desiredWidth = inputScanner.nextInt();
+                System.out.println();
+            }
+        }
+        int setHeight = (int)((desiredWidth / 25.0)*6);
+        System.out.println("\n Press enter to continue...");
+        clearConsole();
+        return new PrintHandler(desiredWidth,setHeight);
+    }
+
+    private static void printWidth(int width)
+    {
+        width = (width/10) * 10;
+        
+        for(int currentWidth = 10; currentWidth <= width ;currentWidth += 10)
+        {
+            String out = "<  ";
+            if(currentWidth < 100){out += " ";}
+            out += currentWidth+"   >";
+            System.out.print(out);
+        }
+    }
+
+    private static void pause()
+{
+    try {System.in.read();}
+    catch(Exception e) {}
+    return;
 }
+
+}
+
+//"The CMD based UI relies upon no text wrapping to remain legible.\n\nWe ask that you resize the window as you desire now, and then enter\nthe width (in characters) that does not take more than one line.\n(Default is 200)"
+
+
+
+
+
+

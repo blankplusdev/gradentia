@@ -9,6 +9,13 @@
             "name": "PrintHandler",
             "request": "launch",
             "mainClass": "coursetool.render.PrintHandler",
+            "projectName": "course-tool_95d9987b"
+        },
+        {
+            "type": "java",
+            "name": "PrintHandler",
+            "request": "launch",
+            "mainClass": "coursetool.render.PrintHandler",
             "projectName": "course-tool_53168d9b"
         },
         {
