@@ -16,6 +16,14 @@ public abstract class CourseTemplate
         this.courseLinks = new ArrayList<CourseLink>();
     }
 
+    public CourseTemplate(CoursePlaceholder oldPlaceholder)
+    {
+        this.ID = oldPlaceholder.getID();
+        this.courseCode = oldPlaceholder.getCode();
+        this.courseName = oldPlaceholder.getName();
+        this.courseLinks = oldPlaceholder.getCourseLinks();
+    }
+
     public void setCourseCode(String courseCode) throws InvalidParameterException //courseCode Assignment
     {
         if(courseCode == null) {throw new InvalidParameterException("Course code cannot be a null string.");}
@@ -46,5 +54,10 @@ public abstract class CourseTemplate
     public String toString()
     {
         return (this.courseCode+" | \""+this.courseName+"\"");
+    }
+
+    public ArrayList<CourseLink> getCourseLinks()
+    {
+        return this.courseLinks;
     }
 }

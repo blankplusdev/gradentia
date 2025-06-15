@@ -1,6 +1,8 @@
 package gradentia.core;
 
 import java.util.HashMap;
+/*
+LEGACY
 
 import gradentia.models.*;
 
@@ -40,3 +42,4 @@ public class DataRepository
         this.courses.remove(objectToRemove.getID());
     }
 }
+*/

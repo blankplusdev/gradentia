@@ -12,13 +12,11 @@ public class Course extends CourseTemplate
         super(ID);
     }
 
-    public Course(CoursePlaceholder source)
+    public Course(CoursePlaceholder oldPlaceholder)
     {
-        super(source.getID());
-        this.courseCode = source.getCode();
-        this.courseName = source.getName();
-        source.markResolved(this);
+        super(oldPlaceholder);
     }
+   
 
     public void setDepartment(Department courseDepartment)
     {
