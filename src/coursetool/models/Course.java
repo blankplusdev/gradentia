@@ -8,8 +8,6 @@ public class Course extends CourseTemplate
     private Department courseDepartment = Department.UNDEFINED; //Categorical department that a course belongs to. Intended for sorting.
     private double courseCreditHours = 0; //Credit hour value of the course. Used for credit hour summary.
     
-    private ArrayList<CourseLink> courseLinks; //An arraylist containing all complete and incomplete courseLinks to other courses.
-
     public Course(Integer ID)
     {
         super(ID);
@@ -35,20 +33,6 @@ public class Course extends CourseTemplate
         this.courseCreditHours = courseCreditHours;
     }
 
-    
-    public void addPrerequisites(ArrayList<CourseTemplate> prerequisiteList) //Adds all prerequisites from the passed ArrayList
-    {
-        for(CourseTemplate prerequisite : prerequisiteList)
-        {
-            courseLinks.add(new CoursePrerequisite(this, prerequisite));
-        }
-    }
-
-    public void addPrerequisites(Course parentCourse)
-    {
-        //Imports all prerequisites from method argument.
-    }
-
     public Department getDepartment()
     {
         return courseDepartment;
@@ -57,11 +41,6 @@ public class Course extends CourseTemplate
     public double getCreditHours()
     {
         return courseCreditHours;
-    }
-
-    public ArrayList<CourseLink> getcourseLinks()
-    {
-        return courseLinks;
     }
 
     public String toString()

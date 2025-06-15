@@ -1,27 +1,11 @@
 package coursetool.models;
 
-import java.security.InvalidParameterException;
-
-public class CourseLink extends CourseDependency
+public interface CourseLink
 {
-    
-    protected CourseTemplate linkDependency;
+    CourseTemplate getOriginCourse();
+    CourseTemplate getTargetCourse();
 
-    public CourseLink(Course origin, CourseTemplate dependency) throws InvalidParameterException
-    {
-        super(origin);
-        if(dependency == null) {throw new InvalidParameterException("Dependency course cannot be a null reference.");}
+    boolean isDirectional();
+    LinkType getLinkType();
 
-        if(this.linkDependency == dependency) {throw new InvalidParameterException("Origin can not reference itself as a dependency.");} 
-    
-        this.linkDependency = dependency;
-    }
-
-    public CourseTemplate getDependency()
-    {
-        return this.linkDependency;
-    }
-
-    
 }
-

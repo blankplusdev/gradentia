@@ -2,11 +2,11 @@ package coursetool.models;
 
 import java.security.InvalidParameterException;
 
-public class CourseTemplate
+public abstract class CourseTemplate
 {
     protected String courseCode = "null"; //A string denoting the course code at the respective institution. Intended for user search and automatic course linking.
     protected String courseName = "null"; //Name of the course. Intended for user searching.
-    protected Integer ID;
+    protected final Integer ID;
 
     public CourseTemplate(Integer ID)
     {

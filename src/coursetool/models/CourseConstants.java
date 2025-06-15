@@ -1,6 +1,7 @@
 package coursetool.models;
 
 //Definitions for the different kinds of dependencies courses can have - key to their relationships.
+/* LEGACY ENUM
 enum CourseDependencyType
 {
     UNDEFINED,
@@ -8,6 +9,7 @@ enum CourseDependencyType
     PREREQUISITE,
     CONCURRENT
 }
+*/
 
 //More verbose definition for a course's semester availability.
 enum Semester
@@ -35,4 +37,11 @@ enum Department
     PHYSICS,
     CSE,
     STAT
+}
+
+enum LinkType
+{
+    ASSOCIATION_CONCURRENT,
+    DEPENDENCY_PREREQUISITE
+
 }
