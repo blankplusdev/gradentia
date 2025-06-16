@@ -2,7 +2,9 @@ package gradentia.repositories;
 
 import java.util.HashMap;
 
-import gradentia.models.*;
+import gradentia.models.Course;
+import gradentia.models.CoursePlaceholder;
+import gradentia.models.CourseTemplate;
 
 public class CourseRepository
 {

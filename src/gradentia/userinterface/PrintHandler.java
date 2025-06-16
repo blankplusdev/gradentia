@@ -2,7 +2,7 @@ package gradentia.userinterface;
 
 import java.util.Scanner;
 
-import gradentia.models.*;
+import gradentia.models.Course;
 
 import java.io.IOException;
 import java.util.ArrayList;
