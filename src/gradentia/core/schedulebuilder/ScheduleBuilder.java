@@ -1,5 +1,28 @@
 package gradentia.core.schedulebuilder;
 
-public class ScheduleBuilder {
+import java.util.ArrayList;
+
+import gradentia.models.*;
+
+public class ScheduleBuilder
+{
     
+    
+    
+    
+    public ArrayList<Schedule> buildSchedules()
+    {
+        ArrayList<Schedule> viableSchedules = new ArrayList<Schedule>();
+
+
+
+
+
+
+        return null;
+    }
+    
+
+
+
 }
