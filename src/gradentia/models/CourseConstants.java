@@ -1,49 +1,49 @@
 package gradentia.models;
 
 //Definitions for the different kinds of dependencies courses can have - key to their relationships.
-/* LEGACY ENUM
-enum CourseDependencyType
-{
-    UNDEFINED,
-    SEMESTER,
-    PREREQUISITE,
-    CONCURRENT
-}
-*/
 
-//More verbose definition for a course's semester availability.
-enum Semester
+public class CourseConstants
 {
-    UNDEFINED,
-    AUTUMN,
-    SPRING,
-    SUMMER
-}
+    public static enum CourseDependencyType
+    {
+        PREREQUISITE,
+        TERM
+    }
 
-//More verbose definition for a course's year availability.
-enum Year
-{
-    ALL,
-    EVEN,
-    ODD
-}
+    //More verbose definition for a course's semester availability.
+    public static enum Semester
+    {
+        UNDEFINED,
+        AUTUMN,
+        SPRING,
+        SUMMER
+    }
 
-//Course department categorization values.
-enum Department
-{
-    UNDEFINED,
-    MATH,
-    ASTRON,
-    PHYSICS,
-    CSE,
-    STAT
-}
+    //More verbose definition for a course's year availability.
+    public static enum Year
+    {
+        ALL,
+        EVEN,
+        ODD
+    }
 
-enum LinkType
-{
-    ASSOCIATION_CONCURRENT,
-    ASSOCIATION_PENDING,
-    DEPENDENCY_PREREQUISITE,
-    DEPENDENCY_PENDING
+    //Course department categorization values.
+    public static enum Department
+    {
+        UNDEFINED,
+        MATH,
+        ASTRON,
+        PHYSICS,
+        CSE,
+        STAT
+    }
 
+    public static enum LinkType
+    {
+        ASSOCIATION_CONCURRENT,
+        ASSOCIATION_PENDING,
+        DEPENDENCY_PREREQUISITE,
+        DEPENDENCY_PENDING
+
+    }
 }

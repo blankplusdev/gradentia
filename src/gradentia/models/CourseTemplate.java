@@ -9,11 +9,13 @@ public abstract class CourseTemplate
     protected String courseName = "null"; //Name of the course. Intended for user searching.
     protected final Integer ID;
     protected ArrayList<CourseLink> courseLinks;
+    protected ArrayList<CourseDependency> courseDependencies;
 
     public CourseTemplate(Integer ID)
     {
         this.ID = ID;
         this.courseLinks = new ArrayList<CourseLink>();
+        this.courseDependencies = new ArrayList<CourseDependency>();
     }
 
     public CourseTemplate(CoursePlaceholder oldPlaceholder)
@@ -59,5 +61,20 @@ public abstract class CourseTemplate
     public ArrayList<CourseLink> getCourseLinks()
     {
         return this.courseLinks;
+    }
+
+    public void addNewCourseLink(CourseLink newLink)
+    {
+        this.courseLinks.add(newLink);
+    }
+
+    public ArrayList<CourseDependency> getCourseDependencies()
+    {
+        return this.courseDependencies;
+    }
+
+    public void addNewCourseDependency(CourseDependency newDependency)
+    {
+        this.courseDependencies.add(newDependency);
     }
 }

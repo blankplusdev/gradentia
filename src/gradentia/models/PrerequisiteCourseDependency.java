@@ -1,6 +1,8 @@
 package gradentia.models;
 
-public class PrerequisiteCourseDependecy extends CourseDependency implements CourseLink
+import gradentia.models.CourseConstants.LinkType;
+
+public class PrerequisiteCourseDependency extends CourseDependency implements CourseLink
 {
     protected boolean dependencySatisfied;
     
@@ -9,8 +11,9 @@ public class PrerequisiteCourseDependecy extends CourseDependency implements Cou
     protected final LinkType linkType = LinkType.DEPENDENCY_PREREQUISITE;
     protected final boolean isDirectional = true;
 
-    public PrerequisiteCourseDependecy(CourseTemplate originCourse, CourseTemplate targetCourse)
+    public PrerequisiteCourseDependency(CourseTemplate originCourse, CourseTemplate targetCourse)
     {
+        this.dependencyType = CourseConstants.CourseDependencyType.PREREQUISITE;
         this.dependencySatisfied = false;
         this.originCourse = originCourse;
         this.targetCourse = targetCourse;

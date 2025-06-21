@@ -2,5 +2,10 @@ package gradentia.models;
 
 public abstract class CourseDependency
 {
-    public abstract boolean isSatisfied();
+    protected CourseConstants.CourseDependencyType dependencyType;
+
+    public CourseConstants.CourseDependencyType getDependencyType()
+    {
+        return this.dependencyType;
+    }
 }

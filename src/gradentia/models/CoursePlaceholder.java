@@ -14,7 +14,7 @@ public class CoursePlaceholder extends CourseTemplate
         this.resolved = true;
     }
 
-    public boolean isResolved() //Returns Replaced Course Reference; testing tool.
+    public boolean isResolved()
     {
         return this.resolved;
     }

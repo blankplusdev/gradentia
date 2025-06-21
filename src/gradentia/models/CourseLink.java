@@ -1,5 +1,7 @@
 package gradentia.models;
 
+import gradentia.models.CourseConstants.LinkType;
+
 public interface CourseLink
 {
     CourseTemplate getOriginCourse();

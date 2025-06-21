@@ -2,6 +2,8 @@ package gradentia.models;
 
 import java.security.InvalidParameterException;
 
+import gradentia.models.CourseConstants.Department;
+
 public class Course extends CourseTemplate
 {
     private Department courseDepartment = Department.UNDEFINED; //Categorical department that a course belongs to. Intended for sorting.
