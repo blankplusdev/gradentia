@@ -2,6 +2,15 @@ package gradentia.models;
 
 import java.util.ArrayList;
 
+/**
+ * Scheduling object containing relevant {@link Course} objects for a specific {@link Term}.
+ * <p> Utilized as a component of {@link Schedule} objects to create full cumulative plans for a degree.</p>
+ * 
+ * @see Course
+ * @see Term
+ * @see Schedule
+ * @see gradentia.core.schedulebuilder.ScheduleBuilder
+ */
 public class ScheduleTerm
 {
  

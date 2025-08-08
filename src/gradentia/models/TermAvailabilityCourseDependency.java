@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import gradentia.models.CourseConstants.Semester;
 import gradentia.models.CourseConstants.Year;
 
+/**
+ * Represents and contains information about {@link CourseTemplate} object term dependencies as determined by institution.
+ * 
+ * @see CourseTemplate
+ * @see Term
+ */
 public class TermAvailabilityCourseDependency extends CourseDependency
 {
     protected boolean dependencySatisfied;

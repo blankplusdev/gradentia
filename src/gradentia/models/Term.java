@@ -2,6 +2,9 @@ package gradentia.models;
 
 import gradentia.models.CourseConstants.Semester;
 
+/**
+ * Object representing an academic term at an institution, including {@link #termSemester} and {@link #termYear}.
+ */
 public class Term
 {
     private final Semester termSemester;

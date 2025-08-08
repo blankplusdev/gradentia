@@ -3,6 +3,13 @@ package gradentia.models;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
+/**
+ * <p> Framework and Parent Class for {@link Course} and {@link CoursePlaceholder}</p>
+ * <p> Establishes shared info fields for both child classes, and serves as the anchor point for the Course ID system.
+ * 
+ * @see Course
+ * @see CoursePlaceholder
+ */
 public abstract class CourseTemplate
 {
     protected String courseCode = "null"; //A string denoting the course code at the respective institution. Intended for user search and automatic course linking.

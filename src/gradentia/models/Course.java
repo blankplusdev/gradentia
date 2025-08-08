@@ -4,6 +4,12 @@ import java.security.InvalidParameterException;
 
 import gradentia.models.CourseConstants.Department;
 
+/**
+ * <p> Primary logical unit for instution courses. </p>
+ * <p> Course objects are the actual representations of courses offered by institutions, and can either be database or user sourced.</p>
+ * 
+ * @see CourseTemplate
+ */
 public class Course extends CourseTemplate
 {
     private Department courseDepartment = Department.UNDEFINED; //Categorical department that a course belongs to. Intended for sorting.

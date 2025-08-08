@@ -2,6 +2,13 @@ package gradentia.models;
 
 import gradentia.models.CourseConstants.LinkType;
 
+/**
+ * Represents and contains information about {@link CourseTemplate} object prerequisite dependencies as determined by institution.
+ * 
+ * @see CourseDependency
+ * @see CourseLink
+ * @see Course
+ */
 public class PrerequisiteCourseDependency extends CourseDependency implements CourseLink
 {
     protected boolean dependencySatisfied;
